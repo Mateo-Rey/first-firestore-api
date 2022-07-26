@@ -22,3 +22,10 @@ db.collection('cars').add(newCar)
 })
 .catch(err => res.status(500).send(err))
 }
+
+export function putCar(req, res) {
+    const { id } = req.params;
+    const db =dbconnect();
+    const updateCar = req.body
+    db.collection('cars').doc(id).set(updateCar, {merge: true})
+}
