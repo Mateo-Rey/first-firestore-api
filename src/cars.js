@@ -9,3 +9,16 @@ export function getAllCars(req,res) {
     }) 
     .catch(err => res.status(500).send(err));
 }
+
+export function createCar(req, res) {
+const db = dbconnect();
+const newCar = req.body
+db.collection('cars').add(newCar)
+.then(doc => {
+    res.status(201).send({
+        success: true,
+        id: doc.id
+    })
+})
+.catch(err => res.status(500).send(err))
+}
