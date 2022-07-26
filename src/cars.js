@@ -28,4 +28,9 @@ export function putCar(req, res) {
     const db =dbconnect();
     const updateCar = req.body
     db.collection('cars').doc(id).set(updateCar, {merge: true})
+    .then(doc => {
+        res.status(201).send({
+            update: true
+        })
+    })
 }
